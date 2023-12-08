@@ -2,8 +2,11 @@ package com.jdk.hackathon.Models;
 
 import jakarta.persistence.*;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 
@@ -39,6 +42,9 @@ public class Request {
     )
     private List<Category> categories;
 
+
+    @Transient
+    private long differenceInDays;
 
     public Request() {
     }
@@ -112,6 +118,18 @@ public class Request {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public long getDifferenceInDays() {
+        return differenceInDays;
+    }
+
+    public void setDifferenceInDays() {
+        Date currentDate = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date requestDate = Date.from(getDate().toInstant());
+        long daysAgo = ChronoUnit.DAYS.between(requestDate.toInstant(), currentDate.toInstant());
+
+        this.differenceInDays = daysAgo;
     }
 
 

@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +29,13 @@ public class RequestService {
 
 
     public List<Request> findAll(){
-        return requestRepository.findAll();
+        List<Request> requests = requestRepository.findAll();
+
+        for (Request request : requests){
+            request.setDifferenceInDays();
+        }
+
+        return requests;
     }
 
     public List<Request> findByCategory(Category category){
@@ -36,8 +44,6 @@ public class RequestService {
 
     @Transactional
     public void save(Request request){
-        LocalDate local = LocalDate.now();
-        request.setDate(Date.from(local.atStartOfDay(ZoneId.systemDefault()).toInstant()));
         requestRepository.save(request);
     }
 

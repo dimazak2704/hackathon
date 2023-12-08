@@ -6,7 +6,7 @@
 </head>
 <body>
 <div th:each="request : ${requests}">
-  <a th:text="${request.getPlace() + ' ' + request.getDate()}">text</a>
+  <a th:text="${request.getPlace() + ' ' + request.getDifferenceInDays() + ' day ago'}">text</a>
     <br/>
   <a th:text="${request.getTitle()}">title</a>
     <br/>
