@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Всі запити</title>
+</head>
+<body>
+<div th:each="request : ${requests}">
+  <a th:text="${request.getPlace() + ' ' + request.getDate()}">text</a>
+    <br/>
+  <a th:text="${request.getTitle()}">title</a>
+    <br/>
+  <a th:text="${request.getDescription()}">desc</a>
+    <br/>
+  <a th:text="${request.getContacts()}">contacts</a>
+    <br/>
+  <a th:text="${request.getCategories()}">categories</a>
+  <br/>
+  <br/>
+</div>
+</body>
+</html>
