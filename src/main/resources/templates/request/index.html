@@ -6,7 +6,8 @@
 </head>
 <body>
 <div th:each="request : ${requests}">
-  <a th:text="${request.getPlace() + ' ' + request.getDifferenceInDays() + ' day ago'}">text</a>
+  <span th:each="location : ${request.locationNames}" th:text="${location} + ', '"></span>
+  <a th:text="${request.getDifferenceInDays() + ' days ago'}">days</a>
     <br/>
   <a th:text="${request.getTitle()}">title</a>
     <br/>
@@ -14,7 +15,7 @@
     <br/>
   <a th:text="${request.getContacts()}">contacts</a>
     <br/>
-  <a th:text="${request.getCategories()}">categories</a>
+  <span th:each="category : ${request.categoryNames}" th:text="${category} + '; '"></span>
   <br/>
   <br/>
 </div>

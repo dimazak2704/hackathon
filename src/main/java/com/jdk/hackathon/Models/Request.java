@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -28,9 +29,6 @@ public class Request {
     @Column(name = "contacts")
     private String contacts;
 
-    @Column(name = "place")
-    private String place;
-
     @Column(name = "date")
     private Date date;
 
@@ -42,26 +40,31 @@ public class Request {
     )
     private List<Category> categories;
 
+    @ManyToMany
+    @JoinTable(
+            name = "request_location",
+            joinColumns = @JoinColumn(name="request_id"),
+            inverseJoinColumns = @JoinColumn(name = "location_id")
+    )
+    private List<Location> locations;
 
     @Transient
     private long differenceInDays;
 
+    @Transient
+    private List<String> locationNames;
+
+    @Transient
+    private List<String> categoryNames;
+
     public Request() {
     }
 
-    public Request(String title, String description, String contacts, String place, Date date) {
+    public Request(String title, String description, String contacts) {
         this.title = title;
         this.description = description;
         this.contacts = contacts;
-        this.place = place;
-        this.date = date;
-    }
-
-    public Request(String title, String description, String contacts, String place) {
-        this.title = title;
-        this.description = description;
-        this.contacts = contacts;
-        this.place = place;
+        this.date = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 
     public int getId() {
@@ -96,14 +99,6 @@ public class Request {
         this.contacts = contacts;
     }
 
-    public String getPlace() {
-        return place;
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -132,7 +127,41 @@ public class Request {
         this.differenceInDays = daysAgo;
     }
 
+    public List<Location> getLocations() {
+        return locations;
+    }
 
+    public void setLocations(List<Location> locations) {
+        this.locations = locations;
+    }
+
+    public List<String> getLocationNames() {
+        return locationNames;
+    }
+
+    public void setLocationNames() {
+        List<String> names = new ArrayList<>();
+        List<Location> locations = getLocations();
+        for(Location location : locations){
+            names.add(location.getValue());
+        }
+
+        this.locationNames = names;
+    }
+
+    public List<String> getCategoryNames() {
+        return categoryNames;
+    }
+
+    public void setCategoryNames() {
+        List<String> names = new ArrayList<>();
+        List<Category> categories = getCategories();
+        for (Category category : categories){
+            names.add(category.getValue());
+        }
+
+        this.categoryNames = names;
+    }
 }
 
 

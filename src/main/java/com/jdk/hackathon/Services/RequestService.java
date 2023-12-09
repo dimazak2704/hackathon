@@ -1,6 +1,7 @@
 package com.jdk.hackathon.Services;
 
 import com.jdk.hackathon.Models.Category;
+import com.jdk.hackathon.Models.Location;
 import com.jdk.hackathon.Models.Request;
 import com.jdk.hackathon.Repositories.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,8 @@ public class RequestService {
 
         for (Request request : requests){
             request.setDifferenceInDays();
+            request.setLocationNames();
+            request.setCategoryNames();
         }
 
         return requests;
@@ -40,6 +43,10 @@ public class RequestService {
 
     public List<Request> findByCategory(Category category){
         return requestRepository.findByCategories(category);
+    }
+
+    public List<Request> findByLocation(Location location){
+        return requestRepository.findByLocations(location);
     }
 
     @Transactional
