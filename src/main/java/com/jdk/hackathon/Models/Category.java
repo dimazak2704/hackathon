@@ -55,4 +55,4 @@ create table category(
     id int primary key auto_increment,
     value varchar(100) not null
 );
- */
+*/

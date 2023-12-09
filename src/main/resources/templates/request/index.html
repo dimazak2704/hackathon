@@ -5,6 +5,17 @@
     <title>Всі запити</title>
 </head>
 <body>
+
+<div th:each="location : ${locations}">
+  <input type="button" th:text="${location.getValue()}">
+</div>
+<br/>
+<br/>
+<div th:each="category : ${categories}">
+  <input type="button" th:text="${category.getValue()}">
+</div>
+<br/>
+<br/>
 <div th:each="request : ${requests}">
   <span th:each="location : ${request.locationNames}" th:text="${location} + ', '"></span>
   <a th:text="${request.getDifferenceInDays() + ' days ago'}">days</a>
