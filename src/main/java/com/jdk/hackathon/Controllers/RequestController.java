@@ -1,6 +1,5 @@
 package com.jdk.hackathon.Controllers;
 
-import com.jdk.hackathon.Models.Category;
 import com.jdk.hackathon.Models.Request;
 import com.jdk.hackathon.Services.CategoryService;
 import com.jdk.hackathon.Services.LocationService;
@@ -9,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/request")
@@ -50,6 +46,6 @@ public class RequestController {
         model.addAttribute("Allcategories", categoryService.findAll());
 
         requestService.save(request);
-        return "redirect:/request/index";
+        return "redirect:/request/main";
     }
 }
