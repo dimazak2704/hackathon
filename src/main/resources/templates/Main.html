@@ -2,15 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <link rel="shortcut icon" type="image/png" href="../static/images/favicon-32x32.png"/>
+<!--    <link href="/static/style.css" th:href="@{/style.css}" rel="stylesheet" />-->
+
+
+    <link rel="shortcut icon" type="image/png" href="../static/img/favicon-32x32.png"/>
+    <title>Help2Need</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&family=Oswald&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/main.css">
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
     <header>
-        <img src="../static/images/Logo.png" alt="Логотип"/>
+        <img src="../static/img/Logo.png" alt="Логотип">
         <div id="menu">
             <p>Пропозиції</p>
             <p>Запити</p>
@@ -24,27 +28,24 @@
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text .
             </p>
         </div>
-        <div id="first-screen-buttons">
+        <div id="first-screen-buttons"> 
             <button id="top">Надаю допомогу</button>
-            <a th:href="@{/request/new}">
             <button id="bottom">Прошу допомогу</button>
-            </a>
+
         </div>
     </div>
 
        <div id="second-screen">
         <div id="icons">
-            <img src="../static/images/facebook.png"/>
-            <img src="../static/images/instagram.png">
-            <img src="../static/images/tik_tok.png">
-
-
+            <img src="../static/img/facebook.png">
+            <img src="../static/img/instagram.png">
+            <img src="../static/img/tik_tok.png">
 
         </div>
         <div id="pictures" >
-            <img src="../static/images/photo1.png">
-            <img src="../static/images/photo2.png">
-            <img src="../static/images/photo3.png">
+            <img src="../static/img/photo1.png">
+            <img src="../static/img/photo2.png">
+            <img src="../static/img/photo3.png">
 
         </div>
 
@@ -59,7 +60,7 @@
     </main>
 
     <footer>
-        <img src="../static/images/Logo.png">
+        <img src="../static/img/Logo.png">
         <div id="footer-text">
             <p>Lorem Ipsum</p>
             <p>Lorem Ipsum</p>
