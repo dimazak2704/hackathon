@@ -1,5 +1,7 @@
 package com.jdk.hackathon.Controllers;
 
+import com.jdk.hackathon.Models.Category;
+import com.jdk.hackathon.Models.Location;
 import com.jdk.hackathon.Models.Proposal;
 import com.jdk.hackathon.Models.Request;
 import com.jdk.hackathon.Services.CategoryService;

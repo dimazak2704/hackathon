@@ -56,6 +56,12 @@ public class Proposal {
     @Transient
     private List<String> categoryNames;
 
+    @Transient
+    private List<String> SelectedCategories;
+
+    @Transient
+    private List<String> SelectedLocations;
+
     public Proposal() {
     }
 
@@ -163,5 +169,21 @@ public class Proposal {
         }
 
         this.categoryNames = names;
+    }
+
+    public List<String> getSelectedCategories() {
+        return SelectedCategories;
+    }
+
+    public void setSelectedCategories(List<String> selectedCategories) {
+        SelectedCategories = selectedCategories;
+    }
+
+    public List<String> getSelectedLocations() {
+        return SelectedLocations;
+    }
+
+    public void setSelectedLocations(List<String> selectedLocations) {
+        SelectedLocations = selectedLocations;
     }
 }
