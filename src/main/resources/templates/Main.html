@@ -14,27 +14,33 @@
 </head>
 <body>
     <header>
-        <img src="../static/img/Logo.png" alt="Логотип">
+        <img href="/help2need" src="../static/img/Logo.png" alt="Логотип">
         <div id="menu">
-            <p>Пропозиції</p>
-            <p>Запити</p>
-            <p>Заходи</p>
+            <a style="text-decoration: none;" href="/proposal/index"> <p>Пропозиції</p> </a>
+            <a style="text-decoration: none;" href="/request/index"> <p>Запити</p> </a>
+            <a style="text-decoration: none;" href="/event/index"> <p>Заходи</p> </a>
         </div>
     </header>
     <main>
         <div id="first-screen">
            <div id="first-screen-text">
             <h1>Волонтерські та громадські ініціативи, що працюють в Україні та за її межами</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text .
+            <p>Ми віримо в силу спільноти та активно працюємо для вирішення соціальних, екологічних та гуманітарних питань. Наша мета - сприяти позитивним змінам у світі та підтримувати ті, хто потребує допомоги.
             </p>
         </div>
-        <div id="first-screen-buttons"> 
+        <div id="first-screen-buttons">
+            <a th:href="@{/proposal/new}">
             <button id="top">Надаю допомогу</button>
-            <button id="bottom">Прошу допомогу</button>
+            </a>
+            <a th:href="@{/request/new}">
+                <button id="bottom">Прошу допомогу</button>
+            </a>
 
         </div>
     </div>
 
+        <br>
+        <br>
        <div id="second-screen">
         <div id="icons">
             <img src="../static/img/facebook.png">
@@ -54,7 +60,7 @@
 
        <div id="third-screen">
         <h1>Долучайся до благодійних заходів</h1>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown </p>
+        <p>Твій внесок допомагає нам забезпечувати підтримку та ресурси для тих, хто цього потребує, та робити світ кращим місцем для всіх. Разом ми можемо змінити життя та внести свій вклад у розвиток суспільства.</p>
         <button id="buttton-event">Прийняти участь</button>
        </div>
     </main>

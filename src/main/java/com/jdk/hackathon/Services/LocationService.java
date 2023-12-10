@@ -25,4 +25,8 @@ public class LocationService {
         return locationRepository.findAll();
     }
 
+    public Location findByValue(String value){
+        return locationRepository.findByValue(value);
+    }
+
 }

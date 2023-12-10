@@ -1,7 +1,7 @@
 body{
     margin: 0px;
     padding: 0px;
-    width: 1440px;
+    width:1440px;
 }
 header{
 width: 1440px;
@@ -13,6 +13,7 @@ justify-content: space-around;
 align-items: center;
 gap: 644px;
 }
+
 #menu{
  width: 484px;
  height: 60px;
@@ -72,6 +73,9 @@ line-height: 60px;
   #first-screen-text h1, p{
     text-align: left;
   }
+a{
+    text-decoration: none;
+}
 
   #first-screen-buttons{
     display: flex;
@@ -208,7 +212,14 @@ line-height: normal;
 input{
   border-radius: 10px;
 border: 1px solid var(--grad, #F6D365);
+
 }
+input[type=text]{
+    font-family: Montserrat;
+    font-size: 20px;
+}
+
+
 #short{
  width: 866px;
 height: 56px;
@@ -266,6 +277,17 @@ line-height: 24px; /* 120% */
 margin-left: 300px;
 
 }
+#help:hover{
+    border-radius: 10px;
+    background: var(--grad, linear-gradient(93deg, #F6D365 40.51%, #FDA085 57.67%));
+    border-radius: 10px;
+    border: 1px solid #F6D365;
+    color: var(--grad, linear-gradient(93deg, #F6D365 40.51%, #FDA085 57.67%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 #events-first-screen{
   display: flex;
   flex-direction: row;

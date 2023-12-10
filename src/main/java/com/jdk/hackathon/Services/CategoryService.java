@@ -24,7 +24,7 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public List<Category> findByValue(String value){
+    public Category findByValue(String value){
         return categoryRepository.findByValue(value);
     }
 }

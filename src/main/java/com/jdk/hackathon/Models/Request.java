@@ -47,7 +47,7 @@ public class Request {
     private List<Location> locations;
 
     @Transient
-    private long differenceInDays;
+    private String differenceInDays;
 
     @Transient
     private List<String> locationNames;
@@ -57,7 +57,10 @@ public class Request {
 
 
     @Transient
-    private List<String> getSelectedCategories;
+    private List<String> SelectedCategories;
+
+    @Transient
+    private List<String> SelectedLocations;
 
 
     public Request() {
@@ -118,7 +121,7 @@ public class Request {
         this.categories = categories;
     }
 
-    public long getDifferenceInDays() {
+    public String getDifferenceInDays() {
         return differenceInDays;
     }
 
@@ -127,7 +130,16 @@ public class Request {
         Date requestDate = Date.from(getDate().toInstant());
         long daysAgo = ChronoUnit.DAYS.between(requestDate.toInstant(), currentDate.toInstant());
 
-        this.differenceInDays = daysAgo;
+        String result = String.valueOf(daysAgo);
+
+        if (daysAgo % 10 == 1 && daysAgo != 11) {
+            result+=" день назад";
+        } else if ((daysAgo % 10 == 2 || daysAgo % 10 == 3 || daysAgo % 10 == 4) && (daysAgo < 10 || daysAgo > 20)) {
+            result+=" дні назад";
+        } else {
+            result+=" днів назад";
+        }
+        this.differenceInDays = result;
     }
 
     public List<Location> getLocations() {
@@ -166,12 +178,20 @@ public class Request {
         this.categoryNames = names;
     }
 
-    public List<String> getGetSelectedCategories() {
-        return getSelectedCategories;
+    public List<String> getSelectedCategories() {
+        return SelectedCategories;
     }
 
-    public void setGetSelectedCategories(List<String> getSelectedCategories) {
-        this.getSelectedCategories = getSelectedCategories;
+    public void setSelectedCategories(List<String> selectedCategories) {
+        SelectedCategories = selectedCategories;
+    }
+
+    public List<String> getSelectedLocations() {
+        return SelectedLocations;
+    }
+
+    public void setSelectedLocations(List<String> selectedLocations) {
+        SelectedLocations = selectedLocations;
     }
 }
 

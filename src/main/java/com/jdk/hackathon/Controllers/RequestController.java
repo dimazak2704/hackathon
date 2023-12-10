@@ -1,5 +1,7 @@
 package com.jdk.hackathon.Controllers;
 
+import com.jdk.hackathon.Models.Category;
+import com.jdk.hackathon.Models.Location;
 import com.jdk.hackathon.Models.Request;
 import com.jdk.hackathon.Services.CategoryService;
 import com.jdk.hackathon.Services.LocationService;
@@ -32,25 +34,38 @@ public class RequestController {
         model.addAttribute("locations", locationService.findAll());
         model.addAttribute("categories", categoryService.findAll());
 
-        return "request/index";
+        return "request/Requests";
     }
 
     @GetMapping("/new")
     public String newRequest(@ModelAttribute("request") Request request,
                              Model model){
         model.addAttribute("Allcategories", categoryService.findAll());
-
-        List<String> names = new ArrayList<>();
-        model.addAttribute("categorynames" , names);
+        model.addAttribute("AllLocations", locationService.findAll());
 
         return "request/Requests_Registration";
     }
 
     @PostMapping("/new")
     public String create(@ModelAttribute("request") Request request,
-                         @ModelAttribute("categorynames") List<String> names,
                          Model model) {
         model.addAttribute("Allcategories", categoryService.findAll());
+        model.addAttribute("AllLocations", locationService.findAll());
+
+        List<String> selectedCategories = request.getSelectedCategories();
+        List<Category> categories = new ArrayList<>();
+        for (String s : selectedCategories){
+            categories.add(categoryService.findByValue(s));
+        }
+
+        List<String> selectedLocations = request.getSelectedLocations();
+        List<Location> locations = new ArrayList<>();
+        for (String s : selectedLocations){
+            locations.add(locationService.findByValue(s));
+        }
+
+        request.setCategories(categories);
+        request.setLocations(locations);
 
         requestService.save(request);
         return "redirect:/request/index";

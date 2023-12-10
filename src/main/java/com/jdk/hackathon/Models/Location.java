@@ -31,6 +31,14 @@ public class Location {
     )
     private List<Proposal> proposals;
 
+    @ManyToMany
+    @JoinTable(
+            name = "event_location",
+            joinColumns = @JoinColumn(name = "location_id"),
+            inverseJoinColumns = @JoinColumn(name = "event_id")
+    )
+    private List<Event> events;
+
 
     public int getId() {
         return id;
@@ -62,5 +70,13 @@ public class Location {
 
     public void setProposals(List<Proposal> proposals) {
         this.proposals = proposals;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 }

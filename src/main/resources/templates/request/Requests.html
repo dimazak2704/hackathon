@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+
+    <link rel="shortcut icon" type="image/png" href="../../static/img/favicon-32x32.png"/>
+    <title>Help2Need</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&family=Oswald&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/request.css">
+</head>
+<body>
+    <header>
+        <a href="/help2need">  <img src="../../static/img/Logo.png" alt="Логотип"></a>
+        <div id="menu">
+            <a style="text-decoration: none;" href="/proposal/index"> <p>Пропозиції</p> </a>
+            <a style="text-decoration: none;" href="/request/index"> <p>Запити</p> </a>
+            <a style="text-decoration: none;" href="/event/index"> <p>Заходи</p> </a>
+        </div>
+      </header>
+    <main>
+        <div id="events-first-screen">
+            <div id="left-block">
+            <p>Кожен ваш крок може мати велике значення для тих, хто потребує вашої допомоги. Разом ми зробимо більше, ніж можемо уявити!</p>
+          <a href="/request/new">  <button id="help" style="margin: 0;">Запросити допомогу</button></a>
+          </div>
+          <div id="right-block">
+            <img src="../../static/img/photo4.png">
+            <div id="icons">
+                <img src="../../static/img/facebook.png">
+                <img src="../../static/img/instagram.png">
+                <img src="../../static/img/tik_tok.png">
+
+            </div>
+          </div>
+        </div>
+
+        <div id="events-second-screen">
+            <div id="selects">
+            <div class="custom-select" >
+                <select>
+                  <option value="0">Локація</option>
+                  <option value="1">Закордон</option>
+                  <option value="2">Вся Україна</option>
+                  <option value="3">Вінниця</option>
+                  <option value="4">Львів</option>
+                  <option value="5">Ужгород</option>
+                  <option value="6">Рівне</option>
+                  <option value="7">Одеса</option>
+                  <option value="8">Херсон</option>
+                  <option value="9">Суми</option>
+                  <option value="10">Запоріжжя</option>
+                  <option value="11">Луганськ</option>
+                  <option value="12">Крим</option>
+                  <option value="13">Житомир</option>
+                  <option value="14">Тернопіль</option>
+                  <option value="15">Чернівці</option>
+                  <option value="16">Хмельницький</option>
+                  <option value="17">Київ</option>
+                  <option value="18">Черкаси</option>
+                  <option value="19">Кропивницький</option>
+                  <option value="20">Дніпро</option>
+                  <option value="21">Миколаїв</option>
+                  <option value="22">Харків</option>
+                  <option value="23">Полтава</option>
+                  <option value="24">Донецьк</option>
+                  <option value="25">Онлайн</option> 
+                </select>
+
+              </div>
+              <div class="custom-select" >
+                <select>
+                  <option value="0">Категорія</option>
+                  <option value="1">Одяг</option>
+                  <option value="2">Перевезення пасажирські</option>
+                  <option value="3">Перевезення вантажні</option>
+                  <option value="4">Їжа</option>
+                  <option value="5">Склади</option>
+                  <option value="6">Паливо</option>
+                  <option value="7">Житло / нічліг</option>
+                  <option value="8">Ліки</option>
+                  <option value="9">Техніка</option>
+                  <option value="10">Вільні руки (Волонтери)</option>
+                  <option value="11">Військова допомога</option>
+                  <option value="12">Гуманітарна допомога</option>
+                  <option value="13">Медична допомога</option>
+                  <option value="14">Інше</option>
+                  <option value="15">Чернівці</option>
+                  <option value="16">Хмельницький</option>
+                  <option value="17">Київ</option>
+                  <option value="18">Черкаси</option>
+                  <option value="19">Кропивницький</option>
+                  <option value="20">Дніпро</option>
+                  <option value="21">Миколаїв</option>
+                  <option value="22">Харків</option>
+                  <option value="23">Полтава</option>
+                  <option value="24">Донецьк</option>
+                  <option value="25">Онлайн</option> 
+                </select>
+                
+              </div>
+
+            </div>
+
+            <div id="blocks" >
+            <div class="block" style="width: 380px; " th:each="request : ${requests}"}>
+                <div class="top-text">
+                    <p style="font-size: 16px;" th:each="location : ${request.locationNames}" th:text="${location} + ' '">Вінниця</p>
+                    <p style="font-size: 16px;" th:text="${request.getDifferenceInDays()}">12 днів назад</p>
+                </div>
+                <div class="main-text">
+                <p th:text="${request.getTitle()}" style="width: 381px;">Дитяче взуття</p>
+                <p style="font-size: 16px; width: 381px;" th:text="${request.getDescription()}">Потрібне диттяче взуття. Розміри від 20 до 36.</p>
+                </div>
+                <div class="bottom-text">
+                <p style=" font-size: 16px; font-weight: 500;">Контакти</p>
+                <p style=" font-size: 16px; font-weight: 400; width: 381px;" th:text="${request.getContacts()}">+380984999999</p>
+            </div>
+                <div class="category">
+            <div class="picture" style="width: 112px; align-content: center" th:each="category : ${request.categoryNames}">
+                    <p style="font-size: 16px; color: white; text-align: center" th:text="${category}">Одяг</p>
+            </div>
+                    </div>
+
+
+            </div>
+            </div>
+        </div>
+
+        </div>   
+    </main>
+    <footer>
+      <a href="/help2need"> <img src="../../static/img/Logo.png"></a>
+        <div id="footer-text">
+            <p>Lorem Ipsum</p>
+            <p>Lorem Ipsum</p>
+            <p>Lorem Ipsum</p>
+        </div>
+        <p>Гаряча лінія: +38087352314</p>
+    </footer>
+    <script>
+        var x, i, j, l, ll, selElmnt, a, b, c;
+        /* ищем любой элемент с классом "custom-select" */
+        x = document.getElementsByClassName("custom-select");
+        l = x.length;
+        for (i = 0; i < l; i++) {
+          selElmnt = x[i].getElementsByTagName("select")[0];
+          ll = selElmnt.length;
+          /* для каждого элемента создаем новый элемент DIV, который будет работать как элемент выбора */
+          a = document.createElement("DIV");
+          a.setAttribute("class", "select-selected");
+          a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+          x[i].appendChild(a);
+          /* для каждого элемента создаем новый элемент DIV, который будет содержать список опций */
+          b = document.createElement("DIV");
+          b.setAttribute("class", "select-items select-hide");
+          for (j = 1; j < ll; j++) {
+            /* для каждой опции в оригинальном выпадающем списке
+            создаем новый элемент DIV, который будет работать как опция */
+            c = document.createElement("DIV");
+            c.innerHTML = selElmnt.options[j].innerHTML;
+            c.addEventListener("click", function(e) {
+                /* когда на элемент кликают, обновляем оригинальный выпадающий список
+                и выбранный элемент */
+                var y, i, k, s, h, sl, yl;
+                s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                sl = s.length;
+                h = this.parentNode.previousSibling;
+                for (i = 0; i < sl; i++) {
+                  if (s.options[i].innerHTML == this.innerHTML) {
+                    s.selectedIndex = i;
+                    h.innerHTML = this.innerHTML;
+                    y = this.parentNode.getElementsByClassName("same-as-selected");
+                    yl = y.length;
+                    for (k = 0; k < yl; k++) {
+                      y[k].removeAttribute("class");
+                    }
+                    this.setAttribute("class", "same-as-selected");
+                    break;
+                  }
+                }
+                h.click();
+            });
+            b.appendChild(c);
+          }
+          x[i].appendChild(b);
+          a.addEventListener("click", function(e) {
+              /* когда на выпадающий список кликают, закрываем другие элементы выбора
+              и открываем/закрываем текущий элемент выбора */
+              e.stopPropagation();
+              closeAllSelect(this);
+              this.nextSibling.classList.toggle("select-hide");
+              this.classList.toggle("select-arrow-active");
+            });
+        }
+        function closeAllSelect(elmnt) {
+          /* функция, которая закрывает все элементы выбора в документе
+          кроме текущего */
+          var x, y, i, xl, yl, arrNo = [];
+          x = document.getElementsByClassName("select-items");
+          y = document.getElementsByClassName("select-selected");
+          xl = x.length;
+          yl = y.length;
+          for (i = 0; i < yl; i++) {
+            if (elmnt == y[i]) {
+              arrNo.push(i)
+            } else {
+              y[i].classList.remove("select-arrow-active");
+            }
+          }
+          for (i = 0; i < xl; i++) {
+            if (arrNo.indexOf(i)) {
+              x[i].classList.add("select-hide");
+            }
+          }
+        }
+        /* если пользователь кликает за пределами выпадающего списка,
+        то все элементы выбора закрываются */
+        document.addEventListener("click", closeAllSelect);
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/png" href="img/favicon-32x32.png"/>
+    <title>Help2Need</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&family=Oswald&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/registrationProposal.css">
+</head>
+<body>
+  <header>
+    <a href="/help2need">  <img src="../../static/img/Logo.png" alt="Логотип"></a>
+
+      <div id="menu">
+          <a style="text-decoration: none;" href="/proposal/index"> <p>Пропозиції</p> </a>
+          <a style="text-decoration: none;" href="/request/index"> <p>Запити</p> </a>
+          <a style="text-decoration: none;" href="/event/index"> <p>Заходи</p> </a>
+      </div>
+  </header>
+    <main>
+      <form th:method="POST" th:action="@{/event/new}" th:object="${event}">
+       <h1>Додати захід</h1>
+       <span class="form">
+        <p>Назва</p>
+        <input style="font-family: Montserrat; font-size:20px;" id="short" type="text" required autofocus = "autofocus" th:field="*{title}" name="shorttext">
+       </span>
+
+       <span class="form">
+        <p>Детальний опис</p>
+        <input style="font-family: Montserrat; font-size:20px;" id="long" type="text" required autofocus = "autofocus" th:field="*{description}" name="longtext">
+       </span>
+
+       <span class="form">
+        <p>Вулиця, заклад</p>
+        <input style="font-family: Montserrat; font-size:20px;" id="short2" type="text" required autofocus = "autofocus" th:field="*{place}" name="contact">
+       </span>
+       <span class="form">
+        <p>Дата і час</p>
+       <input type="datetime-local" id="meeting-time" name="meeting-time" value="2018-06-12T19:30" required autofocus = "autofocus" th:field="*{datefromfront}"  style="width: 259px; height: 40px;"/>
+    </span>
+       
+        <p style="font-size: 24px;">Локація</p>
+
+          <div class="block" th:each="location : ${locations}" style="border: none">
+              <label class="container"><p id="text-checkbox" th:text="${location.value}">text</p>
+                  <input type="checkbox" th:field="*{selectedLocations}" th:value="${location.value}"/>
+                  <span class="checkmark"></span>
+              </label>
+          </div>
+
+       <input id="help-2" type="submit" value="Додати захід">
+      </form>
+       
+    </main>
+
+    <footer>
+      <a href="/help2need"> <img src="../../static/img/Logo.png"></a>
+        <div id="footer-text">
+            <p>Lorem Ipsum</p>
+            <p>Lorem Ipsum</p>
+            <p>Lorem Ipsum</p>
+        </div>
+        <p>Гаряча лінія: +38087352314</p>
+    </footer>
+   
+</body>
+</html>

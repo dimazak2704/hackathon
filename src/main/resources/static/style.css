@@ -13,6 +13,7 @@ justify-content: space-around;
 align-items: center;
 gap: 644px;
 }
+
 #menu{
  width: 484px;
  height: 60px;
@@ -115,7 +116,7 @@ flex-shrink: 0;
 border-radius: 10px;
 border: 1px solid var(--grad, #F6D365);
 
-color: var(--grad, linear-gradient(93deg, #F6D365 40.51%, #FDA085 57.67%));
+    color: var(--grad, linear-gradient(93deg, #F6D365 40.51%, #FDA085 57.67%));
 background-clip: text;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
@@ -129,6 +130,16 @@ background-clip: text;
     margin-top: 110px;
     gap: 299px;
 
+}
+a{
+    text-decoration: none;
+}
+
+input{
+    border-radius: 10px;
+    border: 1px solid var(--grad, #F6D365);
+    font-family: Montserrat;
+    font-size: 20px;
 }
 #icons{
     display: flex;

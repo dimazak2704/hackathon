@@ -18,30 +18,12 @@
     <br/>
     <label>Виберіть категорії:</label>
     <div th:each="category : ${Allcategories}">
-        <input type="checkbox" th:field="*{categoryNames}" th:value="${category.value}" name="laptop"/>
+        <input type="checkbox" th:field="*{selectedCategories}" th:value="${category.value}"/>
         <label th:text="${category.value}"></label>
         <br/>
     </div>
     <input type="submit" value="Create!">
 </form>
-
-
-<script>
-    function getValue() {
-        var checkboxes =
-            document.getElementsByName('laptop');
-        var result = "";
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                result += checkboxes[i].value
-                    + " " + " Laptop, ";
-            }
-        }
-        document.write("<p> You have selected : "
-            + result + "</p>");
-    }
-</script>
-
 
 </body>
 </html>

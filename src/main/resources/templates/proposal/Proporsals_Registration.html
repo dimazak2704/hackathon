@@ -2,16 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" type="image/png" href="../static/img/favicon-32x32.png"/>
     <title>Help2Need</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&family=Oswald&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/registrationRequest.css">
+    <link rel="stylesheet" href="../../static/registrationProposal.css">
 </head>
 <body>
     <header>
-        <a href="/help2need"> <img src="../static/img/Logo.png" alt="Логотип"></a>
+        <a href="/help2need"> <img  src="../static/img/Logo.png" alt="Логотип"></a>
         <div id="menu">
             <a style="text-decoration: none;" href="/proposal/index"> <p>Пропозиції</p> </a>
             <a style="text-decoration: none;" href="/request/index"> <p>Запити</p> </a>
@@ -19,47 +20,42 @@
         </div>
     </header>
     <main>
-      <form th:method="POST" th:action="@{/request/new}" th:object="${request}">
-       <h1>Запросити допомогу</h1>
+      <form th:method="POST" th:action="@{/proposal/new}" th:object="${proposal}">
+       <h1>Надати допомогу</h1>
        <span class="form">
         <p>Назва</p>
-        <input id="short" type="text" th:field="*{title}" name="shorttext">
+        <input style="font-family: Montserrat; font-size:20px;" id="short" type="text" required autofocus = "autofocus" th:field="*{title}" name="shorttext">
        </span>
 
        <span class="form">
         <p>Детальний опис</p>
-        <input id="long" type="text" th:field="*{description}" name="longtext">
+        <input style="font-family: Montserrat; font-size:20px;" id="long" type="text" required autofocus = "autofocus" th:field="*{description}" name="longtext">
        </span>
 
        <span class="form">
         <p>Контакти (номер телефону, електронна адреса, соц. мережі...)</p>
-        <input id="short2" type="text" th:field="*{contacts}" name="contact">
+        <input style="font-family: Montserrat; font-size:20px;" id="short2" type="text" required autofocus = "autofocus" th:field="*{contacts}" name="contact">
        </span>
        
         <p style="font-size: 24px;">Локація</p>
 
-
-
-            <div class="block" th:each="location : ${AllLocations}">
-                <label class="container"><p id="text-checkbox" th:text="${location.value}">text</p>
-                    <input type="checkbox" th:field="*{selectedLocations}" th:value="${location.value}"/>
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-
-
+        <div class="block" th:each="location : ${AllLocations}">
+            <label class="container"><p id="text-checkbox" th:text="${location.value}">text</p>
+                <input type="checkbox" th:field="*{selectedLocations}" th:value="${location.value}"/>
+                <span class="checkmark"></span>
+            </label>
+        </div>
 
        <p style="font-size: 24px;">Категорія</p>
 
-           <div class="block" th:each="category : ${Allcategories}">
+       <div class="block" th:each="category : ${Allcategories}">
            <label class="container"><p id="text-checkbox" th:text="${category.value}">text</p>
-           <input type="checkbox" th:field="*{selectedCategories}" th:value="${category.value}"/>
-           <span class="checkmark"></span>
+               <input type="checkbox" th:field="*{selectedCategories}" th:value="${category.value}"/>
+               <span class="checkmark"></span>
            </label>
-           </div>
+       </div>
 
-
-       <input id="help" type="submit" value="Прошу допомогу">
+       <input id="help-2" type="submit" value="Надаю допомогу">
       </form>
        
     </main>

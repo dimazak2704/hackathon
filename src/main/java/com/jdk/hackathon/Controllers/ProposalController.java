@@ -39,25 +39,40 @@ public class ProposalController {
         model.addAttribute("locations", locationService.findAll());
         model.addAttribute("categories", categoryService.findAll());
 
-        return "proposal/index";
+        return "proposal/Proporsals";
     }
 
     @GetMapping("/new")
     public String newRequest(@ModelAttribute("proposal") Proposal proposal,
                              Model model){
         model.addAttribute("Allcategories", categoryService.findAll());
+        model.addAttribute("AllLocations", locationService.findAll());
 
-        List<String> names = new ArrayList<>();
-        model.addAttribute("categorynames" , names);
-
-        return "proposal/new";
+        return "proposal/Proporsals_Registration";
     }
 
     @PostMapping("/new")
     public String create(@ModelAttribute("proposal") Proposal proposal,
-                         @ModelAttribute("categorynames") List<String> names,
                          Model model) {
         model.addAttribute("Allcategories", categoryService.findAll());
+        model.addAttribute("AllLocations", locationService.findAll());
+
+        List<String> selectedCategories = proposal.getSelectedCategories();
+        List<Category> categories = new ArrayList<>();
+        for (String s : selectedCategories){
+            categories.add(categoryService.findByValue(s));
+        }
+
+        List<String> selectedLocations = proposal.getSelectedLocations();
+        List<Location> locations = new ArrayList<>();
+        for (String s : selectedLocations){
+            locations.add(locationService.findByValue(s));
+        }
+
+        proposal.setCategories(categories);
+        proposal.setLocations(locations);
+
+        proposalService.save(proposal);
 
         proposalService.save(proposal);
         return "redirect:/proposal/index";
