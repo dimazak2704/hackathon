@@ -24,6 +24,14 @@ public class Category {
     )
     private List<Request> requests;
 
+    @ManyToMany
+    @JoinTable(
+            name = "proposal_category",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "proposal_id")
+    )
+    private List<Proposal> proposals;
+
     public int getId() {
         return id;
     }
@@ -46,6 +54,14 @@ public class Category {
 
     public void setRequests(List<Request> requests) {
         this.requests = requests;
+    }
+
+    public List<Proposal> getProposals() {
+        return proposals;
+    }
+
+    public void setProposals(List<Proposal> proposals) {
+        this.proposals = proposals;
     }
 }
 

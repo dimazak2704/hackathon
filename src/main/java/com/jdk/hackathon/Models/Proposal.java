@@ -1,17 +1,18 @@
 package com.jdk.hackathon.Models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-
 @Entity
-@Table(name = "request")
-public class Request {
+@Table(name = "proposal")
+public class Proposal {
 
     @Id
     @Column(name = "id")
@@ -32,16 +33,16 @@ public class Request {
 
     @ManyToMany
     @JoinTable(
-            name = "request_category",
-            joinColumns = @JoinColumn(name="request_id"),
+            name = "proposal_category",
+            joinColumns = @JoinColumn(name="proposal_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private List<Category> categories;
 
     @ManyToMany
     @JoinTable(
-            name = "request_location",
-            joinColumns = @JoinColumn(name="request_id"),
+            name = "proposal_location",
+            joinColumns = @JoinColumn(name="proposal_id"),
             inverseJoinColumns = @JoinColumn(name = "location_id")
     )
     private List<Location> locations;
@@ -55,20 +56,9 @@ public class Request {
     @Transient
     private List<String> categoryNames;
 
-
-    @Transient
-    private List<String> getSelectedCategories;
-
-
-    public Request() {
+    public Proposal() {
     }
 
-    public Request(String title, String description, String contacts) {
-        this.title = title;
-        this.description = description;
-        this.contacts = contacts;
-        this.date = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
-    }
 
     public int getId() {
         return id;
@@ -118,6 +108,14 @@ public class Request {
         this.categories = categories;
     }
 
+    public List<Location> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(List<Location> locations) {
+        this.locations = locations;
+    }
+
     public long getDifferenceInDays() {
         return differenceInDays;
     }
@@ -128,14 +126,6 @@ public class Request {
         long daysAgo = ChronoUnit.DAYS.between(requestDate.toInstant(), currentDate.toInstant());
 
         this.differenceInDays = daysAgo;
-    }
-
-    public List<Location> getLocations() {
-        return locations;
-    }
-
-    public void setLocations(List<Location> locations) {
-        this.locations = locations;
     }
 
     public List<String> getLocationNames() {
@@ -165,30 +155,4 @@ public class Request {
 
         this.categoryNames = names;
     }
-
-    public List<String> getGetSelectedCategories() {
-        return getSelectedCategories;
-    }
-
-    public void setGetSelectedCategories(List<String> getSelectedCategories) {
-        this.getSelectedCategories = getSelectedCategories;
-    }
 }
-
-
-/*
-create table request(
-    id int primary key auto_increment,
-    title varchar(255) not null,
-    description varchar(1000),
-    contacts varchar(255) not null,
-    place varchar(500),
-    date varchar(50)
-);
-
-create table request_category(
-    request_id int references request(id),
-    category_id int references category(id),
-    primary key (request_id, category_id)
-);
- */
